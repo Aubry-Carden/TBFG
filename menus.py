@@ -17,21 +17,14 @@ def battle(player, ai_level):
         print("Options:")
         print("  1: Attack!")
         print("  2: Block")
-        print("  3: Bandage")
-        print("  4: Run!")
-        option = option_selector(4)
+        print("  3: Run!")
+        option = option_selector(3)
         if option == 1:
             otpt = enemy.calculate_damage(player.attack_damage)
             print(f'You did {otpt["damage"]} damage! Your enemy is now at {otpt["hp"]}hp!')
         elif option == 2:
             player_is_blocking = True
         elif option == 3:
-            if player.current_hp + 10 <= player.max_hp:
-                player.current_hp += 10
-            else:
-                player.current_hp = player.max_hp
-            print("You healed 10hp!")
-        elif option == 4:
             print("You run away.. coward.")
             check = True
             result = "run"
@@ -102,9 +95,8 @@ def store(player):
     while not finished:
         clear_screen()
         print("  1: Abilities")
-        print("  2: Items")
-        print("  3: Back")
-        option = option_selector(3)
+        print("  2: Back")
+        option = option_selector(2)
         if option == 1:
             check = False
             while not check:
@@ -137,28 +129,6 @@ def store(player):
                 elif option == 4:
                     check = True
         elif option == 2:
-            check = False
-            while not check:
-                clear_screen()
-                print(f"Player Coins: {player.coins}")
-                print("-"*10)
-                print("  1: Health Potion (10 coins)")
-                print("  2: Strenght Potion (20 coins)")
-                print("  3: Invincablity Potion (100 coins)")
-                print("  4: Back")
-                option = option_selector(4)
-                if option == 1:
-                    if player.coins >= 10:
-                        player.potions["health"] += 1
-                elif option == 2:
-                    if player.coins >= 20:
-                        player.potions["strenght"] += 1
-                elif option == 3:
-                    if player.coins >= 100:
-                        player.potions["invincablity"] += 1
-                elif option == 4:
-                    check = True
-        elif option == 3:
             return ["menu_request:main_menu", player]
 
 

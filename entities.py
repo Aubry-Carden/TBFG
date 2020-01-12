@@ -8,11 +8,9 @@ class Player():
         self.xp = xp
         self.attack_damage = attack_damage
         self.defense_ablilty = defense_ablilty
-        self.potions = {
-            "health": 0,
-            "strenght": 0,
-            "invincablity": 0
-        }
+        self.wins = wins
+        self.loses = loses
+
 
     def calculate_damage(self, attack_strenght, blocking):
         damage = round(attack_strenght / self.defense_ablilty)
@@ -26,6 +24,7 @@ class Player():
         if damage < 0:
             damage = 0
         self.current_hp -= damage
+        del attack_strenght, blocking
         return {
             "hp": self.current_hp,
             "damage": damage
@@ -57,6 +56,7 @@ class Enemy():
 
         self.hp = self.hp*8
         self.attack_damage = self.attack_damage*2
+        del xp_to_spend, subject, number
 
     def calculate_damage(self, attack_strenght):
         damage = round(attack_strenght / self.defense_ablilty)
@@ -66,6 +66,7 @@ class Enemy():
         if random.randint(1,100) <= 1:
             damage = attack_strenght
         self.hp -= damage
+        del attack_strenght
         return {
             "hp": self.hp,
             "damage": damage

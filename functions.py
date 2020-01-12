@@ -16,6 +16,7 @@ def save_character(player):
     }
     with open(f'PlayerSaves/{name}', 'w+') as f:
         json.dump(PlayerData, f, indent=4)
+    del name, PlayerData
     return "menu_request:main_menu"
 
 def load_character():
@@ -27,6 +28,7 @@ def load_character():
     with open(f'PlayerSaves/{files[character_number-1]}') as f:
         PlayerData = json.load(f)
     player = Player(PlayerData["max_hp"], PlayerData["current_hp"], PlayerData["coins"], PlayerData["xp"], PlayerData["attack_damage"], PlayerData["defense_ablilty"])
+    del files, character_number, PlayerData
     return ["menu_request:main_menu", player]
 
 def clear_screen():
@@ -48,4 +50,5 @@ def option_selector(max_int, min_int=1):
     except Exception as e:
         print(e)
     finally:
+        del min_int, max_int
         return option

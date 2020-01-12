@@ -1,10 +1,15 @@
 import menus
 from entities import Player
 from functions import clear_screen, save_character, load_character
+import json
+
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
 clear_screen()
-player = Player()
-
+if config["DevMode"] == True: player = Player(max_hp=999, current_hp=999, coins=9999, xp=9999, attack_damage=200, defense_ablilty=2000)
+else: player = Player()
+del config
 menus.title()
 
 # Start main loop
