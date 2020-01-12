@@ -1,2 +1,2 @@
 ## Turn Based Fighting Game by Thermixia
-#Requirements: Python3
+Requirements: Python3
